@@ -7,13 +7,7 @@
 
 import { post } from "./api.js";
 import { clearAlert, clearFieldErrors, showAlert, showFieldError } from "./dom.js";
-
-function safeNextPath() {
-  const requested = new URLSearchParams(window.location.search).get("next");
-  if (!requested) return "/";
-  if (!requested.startsWith("/") || requested.startsWith("//")) return "/";
-  return requested;
-}
+import { safeNextPath } from "./redirect.js";
 
 function setup() {
   const form = document.querySelector("#login-form");
@@ -33,7 +27,7 @@ function setup() {
         email: String(data.get("email") ?? "").trim(),
         password: String(data.get("password") ?? ""),
       });
-      window.location.assign(safeNextPath());
+      window.location.assign(safeNextPath(window.location.search, window.location.origin));
     } catch (error) {
       const placed = error.field ? showFieldError(form, error.field, error.message) : false;
       if (!placed) showAlert(alertBox, error.message);

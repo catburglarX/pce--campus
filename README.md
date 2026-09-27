@@ -100,7 +100,7 @@ Every setting is an environment variable read once at startup. All are optional.
 ## Verify it
 
 ```powershell
-& $bun test                      # 97 tests
+& $bun test                      # 105 tests
 & $bun x tsc --noEmit            # type check, needs the dev dependencies installed
 & $bun run scripts/smoke.ts      # starts a real server on a free port and drives every feature over HTTP
 ```
@@ -153,9 +153,10 @@ src/
   services/          database access and business operations
   routes/            one file per area of the API, plus page gating
 public/              nine HTML pages, two stylesheets, ES modules, no build step
-tests/               seven suites
+tests/               eight suites
 scripts/smoke.ts     end to end check over real HTTP
 docs/adr/            the architecture decision and the argument against it
+.github/workflows/    CI, release packaging and CodeQL
 ```
 
 Pages are gated on the server. A signed-out browser is redirected before any HTML is written, and a student

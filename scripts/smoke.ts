@@ -455,16 +455,16 @@ async function runDashboardAndSessionChecks(student: Session, admin: Session): P
   expectEqual("a student can change their password", changed.status, 200);
   const oldSession = await callApi("GET", "/api/auth/me", { session: student });
   expectEqual("the old session is dead after a password change", oldSession.status, 401);
-  const oldPassword = await callApi("POST", "/api/auth/login", {
+  const staleLogin = await callApi("POST", "/api/auth/login", {
     body: { email: "smoke.student@poornima.org", password: STUDENT_PASSWORD },
   });
-  expectEqual("the old password no longer works", oldPassword.status, 401);
-  const newPassword = await callApi("POST", "/api/auth/login", {
+  expectEqual("the old password no longer works", staleLogin.status, 401);
+  const freshLogin = await callApi("POST", "/api/auth/login", {
     body: { email: "smoke.student@poornima.org", password: "a-completely-different-phrase-99" },
   });
-  expectEqual("the new password works", newPassword.status, 200);
+  expectEqual("the new password works", freshLogin.status, 200);
 
-  const signedOut = sessionFrom(newPassword.headers, newPassword.body.csrfToken);
+  const signedOut = sessionFrom(freshLogin.headers, freshLogin.body.csrfToken);
   const logout = await callApi("POST", "/api/auth/logout", { session: signedOut, body: {} });
   expectEqual("signing out succeeds", logout.status, 200);
   const afterLogout = await callApi("GET", "/api/auth/me", { session: signedOut });
