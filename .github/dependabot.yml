@@ -1,10 +1,8 @@
 version: 2
 updates:
+  # The two npm dev dependencies are pinned and bumped by hand: Dependabot cannot yet parse
+  # Bun's lockfile v2, so an npm entry here only produces failed update runs.
   - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: weekly
-  - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
