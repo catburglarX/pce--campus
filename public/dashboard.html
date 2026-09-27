@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div id="app-header"></div>
+
+    <main class="page" id="main">
+      <div class="page-head">
+        <h1>Campus dashboard</h1>
+        <p>
+          What students are saying about the mess and the rest of the campus, updated as soon as anyone
+          posts.
+        </p>
+      </div>
+
+      <section aria-labelledby="totals-heading">
+        <h2 class="visually-hidden" id="totals-heading">Totals</h2>
+        <div class="grid grid--stats" id="totals">
+          <p class="loading">Loading numbers…</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="today-heading">
+        <div class="card__head">
+          <h2 id="today-heading">Today in the mess</h2>
+          <a class="btn btn--small" href="/mess">Rate a meal</a>
+        </div>
+        <div class="grid grid--cards" id="today-meals"></div>
+      </section>
+
+      <div class="grid grid--two">
+        <section class="card" aria-labelledby="trend-heading">
+          <h2 id="trend-heading">Mess rating, last seven days</h2>
+          <div class="trend" id="trend"></div>
+          <p class="caption muted" id="trend-note"></p>
+        </section>
+
+        <section class="card" aria-labelledby="spread-heading">
+          <h2 id="spread-heading">How students rate the campus</h2>
+          <div id="spread"></div>
+        </section>
+      </div>
+
+      <section class="card" aria-labelledby="categories-heading">
+        <div class="card__head">
+          <h2 id="categories-heading">Every part of campus, scored</h2>
+          <a class="btn btn--small btn--secondary" href="/reviews">Read the reviews</a>
+        </div>
+        <div class="table-wrap">
+          <table id="categories">
+            <caption>Average stars and open complaints for each area students review.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Area</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Reviews</th>
+                <th scope="col">Open complaints</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="activity-heading">
+        <h2 id="activity-heading">Latest activity</h2>
+        <ul class="entry-list" id="activity"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="/js/dashboard.js"></script>
+  </body>
+</html>

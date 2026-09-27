@@ -1,5 +1,9 @@
 # PCE Campus Voice
 
+[![CI](https://github.com/catburglarX/pce--campus/actions/workflows/ci.yml/badge.svg)](https://github.com/catburglarX/pce--campus/actions/workflows/ci.yml)
+[![Release](https://github.com/catburglarX/pce--campus/actions/workflows/release.yml/badge.svg)](https://github.com/catburglarX/pce--campus/actions/workflows/release.yml)
+[![CodeQL](https://github.com/catburglarX/pce--campus/actions/workflows/codeql.yml/badge.svg)](https://github.com/catburglarX/pce--campus/actions/workflows/codeql.yml)
+
 A private review site for students of Poornima College of Engineering. Students sign in with a college
 email and a join code, rate every mess meal on taste, hygiene and quantity, review any part of campus from
 the hostel to the placement cell, raise complaints that an admin moves through a status workflow, and read
@@ -168,5 +172,3 @@ none of them are needed for the site to be useful.
 
 Built and verified against Bun 1.3.13, then re-verified against Bun 1.4.2 after the runtime updated
 itself. Any Bun from 1.3 should work. Nothing else is required to run it.
-#   p c e - - c a m p u s  
- 

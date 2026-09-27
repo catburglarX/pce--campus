@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div id="app-header"></div>
+
+    <main class="page" id="main">
+      <div class="page-head">
+        <h1>Campus admin</h1>
+        <p>
+          Reported reviews, the student roster, and a record of every moderation action taken on this
+          site.
+        </p>
+      </div>
+
+      <section class="card" aria-labelledby="join-heading">
+        <h2 id="join-heading">Join code</h2>
+        <p>
+          Students need this code to register. It is set with the JOIN_CODE environment variable when the
+          server starts.
+        </p>
+        <p class="stat__value" id="join-code">…</p>
+      </section>
+
+      <section aria-labelledby="reports-heading">
+        <div class="card__head">
+          <h2 id="reports-heading">Reported reviews</h2>
+          <p class="caption muted" id="reports-count" role="status"></p>
+        </div>
+        <ul class="entry-list" id="reports">
+          <li class="loading">Loading reports…</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="roster-heading">
+        <h2 id="roster-heading">Students</h2>
+        <div class="table-wrap">
+          <table id="roster">
+            <caption>Everyone registered on this site. Deactivating an account ends its sessions at once.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Role</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="audit-heading">
+        <h2 id="audit-heading">Moderation log</h2>
+        <div class="table-wrap">
+          <table id="audit">
+            <caption>Most recent first. This log cannot be edited from the site.</caption>
+            <thead>
+              <tr>
+                <th scope="col">When</th>
+                <th scope="col">Who</th>
+                <th scope="col">Action</th>
+                <th scope="col">Target</th>
+                <th scope="col">Detail</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/admin.js"></script>
+  </body>
+</html>

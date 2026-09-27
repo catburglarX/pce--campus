@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Complaints · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div id="app-header"></div>
+
+    <main class="page" id="main">
+      <div class="page-head">
+        <h1>Complaints</h1>
+        <p>
+          A review says what something is like. A complaint says something is broken and needs fixing. Add
+          your voice to an existing one instead of raising a duplicate, so the count shows how many
+          students it affects.
+        </p>
+      </div>
+
+      <section class="card" aria-labelledby="raise-heading">
+        <h2 id="raise-heading">Raise a complaint</h2>
+        <details id="raise-details">
+          <summary>Open the complaint form</summary>
+          <div class="form-alert" id="raise-alert" role="alert"></div>
+          <form id="raise-form" class="stack" novalidate>
+            <div class="field">
+              <label class="field__label" for="categoryId">Area</label>
+              <select id="categoryId" name="categoryId" required></select>
+              <span class="field__error" id="categoryId-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="title">What is wrong, in one line</label>
+              <input type="text" id="title" name="title" required minlength="4" maxlength="120" />
+              <span class="field__error" id="title-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="body">Details</label>
+              <span class="field__hint" id="body-hint">
+                When did it start, how often does it happen, and what have you already tried or told
+                someone?
+              </span>
+              <textarea id="body" name="body" aria-describedby="body-hint" required minlength="10" maxlength="3000" rows="5"></textarea>
+              <span class="field__error" id="body-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="location">Where</label>
+              <input type="text" id="location" name="location" maxlength="120" placeholder="Block B, room 204" />
+              <span class="field__error" id="location-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="severity">How urgent</label>
+              <select id="severity" name="severity">
+                <option value="low">Low, an annoyance</option>
+                <option value="normal" selected>Normal, needs attention</option>
+                <option value="high">High, unsafe or blocking study</option>
+              </select>
+              <span class="field__error" id="severity-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="checkbox" for="isAnonymous">
+                <input type="checkbox" id="isAnonymous" name="isAnonymous" />
+                <span>Raise this without my name</span>
+              </label>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn" type="submit" id="raise-submit">Submit complaint</button>
+              <button class="btn btn--secondary" type="reset">Clear</button>
+            </div>
+          </form>
+        </details>
+      </section>
+
+      <section class="card" aria-labelledby="filter-heading">
+        <h2 id="filter-heading">Filter</h2>
+        <form id="filter-form" class="filters" novalidate>
+          <div class="field">
+            <label class="field__label" for="filter-status">Status</label>
+            <select id="filter-status" name="status">
+              <option value="">All</option>
+              <option value="open">Open</option>
+              <option value="in_progress">In progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="filter-category">Area</label>
+            <select id="filter-category" name="category">
+              <option value="">All areas</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="checkbox" for="filter-mine">
+              <input type="checkbox" id="filter-mine" name="mine" />
+              <span>Only mine</span>
+            </label>
+          </div>
+          <button class="btn" type="submit">Apply</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="list-heading">
+        <div class="card__head">
+          <h2 id="list-heading">Complaints</h2>
+          <p class="caption muted" id="list-count" role="status"></p>
+        </div>
+        <ul class="entry-list" id="list">
+          <li class="loading">Loading complaints…</li>
+        </ul>
+      </section>
+    </main>
+
+    <script type="module" src="/js/complaints.js"></script>
+  </body>
+</html>

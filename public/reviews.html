@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Campus reviews · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div id="app-header"></div>
+
+    <main class="page" id="main">
+      <div class="page-head">
+        <h1>Campus reviews</h1>
+        <p>
+          Hostel, labs, faculty, library, WiFi, buses, sports, the canteen, the office queue. Rate any
+          part of college and read what other students found.
+        </p>
+      </div>
+
+      <section class="card" aria-labelledby="write-heading">
+        <h2 id="write-heading">Write a review</h2>
+        <details id="write-details">
+          <summary>Open the review form</summary>
+          <div class="form-alert" id="write-alert" role="alert"></div>
+          <form id="write-form" class="stack" novalidate>
+            <div class="field">
+              <label class="field__label" for="categoryId">Which part of campus</label>
+              <select id="categoryId" name="categoryId" required></select>
+              <span class="field__error" id="categoryId-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="subject">What or who exactly</label>
+              <span class="field__hint" id="subject-hint">
+                Optional. For example "Hostel block C", "Bus route 4", "Physics lab 2".
+              </span>
+              <input type="text" id="subject" name="subject" aria-describedby="subject-hint" maxlength="120" />
+              <span class="field__error" id="subject-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="title">Title</label>
+              <input type="text" id="title" name="title" required minlength="4" maxlength="120" />
+              <span class="field__error" id="title-error" role="alert"></span>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="body">Your review</label>
+              <span class="field__hint" id="body-hint">
+                At least 10 characters. Say what happened and when, so it is useful to the next student.
+              </span>
+              <textarea id="body" name="body" aria-describedby="body-hint" required minlength="10" maxlength="4000" rows="5"></textarea>
+              <span class="field__error" id="body-error" role="alert"></span>
+            </div>
+
+            <div id="stars-slot"></div>
+            <span class="field__error" id="stars-error" role="alert"></span>
+
+            <div class="field">
+              <label class="checkbox" for="isAnonymous">
+                <input type="checkbox" id="isAnonymous" name="isAnonymous" />
+                <span>Post without my name</span>
+              </label>
+              <span class="field__hint">
+                Other students will see "Anonymous student". A campus admin can still trace abuse, so this
+                is not anonymity from the college.
+              </span>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn" type="submit" id="write-submit">Post review</button>
+              <button class="btn btn--secondary" type="reset">Clear</button>
+            </div>
+          </form>
+        </details>
+      </section>
+
+      <section class="card" aria-labelledby="filter-heading">
+        <h2 id="filter-heading">Find reviews</h2>
+        <form id="filter-form" class="filters" novalidate>
+          <div class="field">
+            <label class="field__label" for="filter-category">Area</label>
+            <select id="filter-category" name="category">
+              <option value="">All areas</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="filter-sort">Sort by</label>
+            <select id="filter-sort" name="sort">
+              <option value="recent">Newest first</option>
+              <option value="helpful">Most helpful</option>
+              <option value="highest">Highest rated</option>
+              <option value="lowest">Lowest rated</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="filter-search">Search</label>
+            <input type="search" id="filter-search" name="q" placeholder="water, projector, bus…" />
+          </div>
+          <div class="field">
+            <label class="checkbox" for="filter-mine">
+              <input type="checkbox" id="filter-mine" name="mine" />
+              <span>Only mine</span>
+            </label>
+          </div>
+          <button class="btn" type="submit">Apply</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="results-heading">
+        <div class="card__head">
+          <h2 id="results-heading">Reviews</h2>
+          <p class="caption muted" id="result-count" role="status"></p>
+        </div>
+        <ul class="entry-list" id="results">
+          <li class="loading">Loading reviews…</li>
+        </ul>
+        <div class="pagination" id="pagination"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/reviews.js"></script>
+  </body>
+</html>

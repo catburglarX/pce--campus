@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My account · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div id="app-header"></div>
+
+    <main class="page" id="main">
+      <div class="page-head">
+        <h1>My account</h1>
+        <p>Your details, what you have contributed, and your password.</p>
+      </div>
+
+      <section aria-labelledby="activity-heading">
+        <h2 class="visually-hidden" id="activity-heading">My activity</h2>
+        <div class="grid grid--stats" id="activity">
+          <p class="loading">Loading…</p>
+        </div>
+      </section>
+
+      <div class="grid grid--two">
+        <section class="card" aria-labelledby="profile-heading">
+          <h2 id="profile-heading">Your details</h2>
+          <div class="form-alert" id="profile-alert" role="alert"></div>
+          <form id="profile-form" class="stack" novalidate>
+            <div class="field">
+              <label class="field__label" for="email-display">College email</label>
+              <input type="email" id="email-display" name="emailDisplay" disabled />
+              <span class="field__hint">Your email cannot be changed here. Ask the admin.</span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="name">Full name</label>
+              <input type="text" id="name" name="name" required minlength="2" maxlength="80" />
+              <span class="field__error" id="name-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="branch">Branch</label>
+              <input type="text" id="branch" name="branch" maxlength="60" />
+              <span class="field__error" id="branch-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="studyYear">Year of study</label>
+              <select id="studyYear" name="studyYear">
+                <option value="">Prefer not to say</option>
+                <option value="1">First year</option>
+                <option value="2">Second year</option>
+                <option value="3">Third year</option>
+                <option value="4">Fourth year</option>
+              </select>
+              <span class="field__error" id="studyYear-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label class="checkbox" for="isHostelResident">
+                <input type="checkbox" id="isHostelResident" name="isHostelResident" />
+                <span>I stay in the hostel and eat in the mess</span>
+              </label>
+            </div>
+            <div class="btn-row">
+              <button class="btn" type="submit" id="profile-submit">Save details</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card" aria-labelledby="password-heading">
+          <h2 id="password-heading">Change password</h2>
+          <p class="caption muted">
+            Changing your password signs out every other device, including any session someone else may
+            have on your account.
+          </p>
+          <div class="form-alert" id="password-alert" role="alert"></div>
+          <form id="password-form" class="stack" novalidate>
+            <div class="field">
+              <label class="field__label" for="currentPassword">Current password</label>
+              <input type="password" id="currentPassword" name="currentPassword" autocomplete="current-password" required />
+              <span class="field__error" id="currentPassword-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="newPassword">New password</label>
+              <span class="field__hint" id="newPassword-hint">At least 10 characters, not from a breach list.</span>
+              <input type="password" id="newPassword" name="newPassword" autocomplete="new-password" aria-describedby="newPassword-hint" required minlength="10" />
+              <span class="field__error" id="newPassword-error" role="alert"></span>
+            </div>
+            <div class="btn-row">
+              <button class="btn" type="submit" id="password-submit">Change password</button>
+            </div>
+          </form>
+          <p class="caption muted" id="session-count"></p>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="/js/profile.js"></script>
+  </body>
+</html>

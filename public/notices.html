@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notices · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div id="app-header"></div>
+
+    <main class="page" id="main">
+      <div class="page-head">
+        <h1>Notices</h1>
+        <p>Announcements from the campus admin. Pinned notices stay at the top.</p>
+      </div>
+
+      <section class="card" id="post-section" aria-labelledby="post-heading" hidden>
+        <h2 id="post-heading">Post a notice</h2>
+        <div class="form-alert" id="post-alert" role="alert"></div>
+        <form id="post-form" class="stack" novalidate>
+          <div class="field">
+            <label class="field__label" for="title">Title</label>
+            <input type="text" id="title" name="title" required minlength="4" maxlength="140" />
+            <span class="field__error" id="title-error" role="alert"></span>
+          </div>
+          <div class="field">
+            <label class="field__label" for="body">Notice</label>
+            <textarea id="body" name="body" required minlength="4" maxlength="3000" rows="4"></textarea>
+            <span class="field__error" id="body-error" role="alert"></span>
+          </div>
+          <div class="field">
+            <label class="checkbox" for="isPinned">
+              <input type="checkbox" id="isPinned" name="isPinned" />
+              <span>Pin to the top</span>
+            </label>
+          </div>
+          <div class="btn-row">
+            <button class="btn" type="submit" id="post-submit">Publish notice</button>
+            <button class="btn btn--secondary" type="reset">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section aria-labelledby="list-heading">
+        <h2 id="list-heading">Published notices</h2>
+        <ul class="entry-list" id="list">
+          <li class="loading">Loading notices…</li>
+        </ul>
+      </section>
+    </main>
+
+    <script type="module" src="/js/notices.js"></script>
+  </body>
+</html>

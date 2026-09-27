@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create an account · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <main class="auth-shell" id="main">
+      <div class="auth-card">
+        <div class="auth-card__head">
+          <h1>Create your account</h1>
+          <p>You need a college email address and the join code from your class group or the admin.</p>
+        </div>
+
+        <div class="form-alert" id="alert" role="alert"></div>
+
+        <form id="register-form" novalidate>
+          <div class="field">
+            <label class="field__label" for="name">Full name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
+            <span class="field__error" id="name-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="email">College email</label>
+            <span class="field__hint" id="email-hint">Must end in poornima.org or poornima.edu.in</span>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="username"
+              aria-describedby="email-hint"
+              required
+              spellcheck="false"
+            />
+            <span class="field__error" id="email-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="password">Password</label>
+            <span class="field__hint" id="password-hint">
+              At least 10 characters. A short phrase you will remember beats a clever short word.
+              Passwords found in public breach lists are refused.
+            </span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="new-password"
+              aria-describedby="password-hint"
+              required
+              minlength="10"
+            />
+            <span class="field__error" id="password-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="joinCode">Join code</label>
+            <input type="text" id="joinCode" name="joinCode" required spellcheck="false" />
+            <span class="field__error" id="joinCode-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="branch">Branch</label>
+            <input
+              type="text"
+              id="branch"
+              name="branch"
+              placeholder="Computer Science, Mechanical, Civil…"
+            />
+            <span class="field__error" id="branch-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="studyYear">Year of study</label>
+            <select id="studyYear" name="studyYear">
+              <option value="">Prefer not to say</option>
+              <option value="1">First year</option>
+              <option value="2">Second year</option>
+              <option value="3">Third year</option>
+              <option value="4">Fourth year</option>
+            </select>
+            <span class="field__error" id="studyYear-error" role="alert"></span>
+          </div>
+
+          <div class="field">
+            <label class="checkbox" for="isHostelResident">
+              <input type="checkbox" id="isHostelResident" name="isHostelResident" />
+              <span>I stay in the hostel and eat in the mess</span>
+            </label>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" type="submit" id="submit">Create account</button>
+            <a class="btn btn--ghost" href="/login">I already have an account</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script type="module" src="/js/register.js"></script>
+  </body>
+</html>

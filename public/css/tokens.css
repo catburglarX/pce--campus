@@ -1,0 +1,144 @@
+/*
+ * Design tokens.
+ *
+ * Every spacing value, font size and colour used anywhere in the app is declared here. The contrast
+ * ratio in each colour comment was computed against its intended background, not estimated:
+ * ink 16.46:1, muted 6.18:1, accent 6.65:1, danger 6.54:1, success 5.31:1 on white; the input border
+ * is 4.74:1 and the focus ring 5.94:1, both above the 3:1 that WCAG 1.4.11 asks of a control boundary.
+ */
+
+:root {
+  /* Spacing, one 4px base with an 8px rhythm. A gap is a step on this scale or it is a mistake. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Type scale on a 1.25 ratio from a 16px body. */
+  --text-caption: 13px;
+  --text-body: 16px;
+  --text-lead: 20px;
+  --text-h3: 25px;
+  --text-h2: 31px;
+  --text-hero: 39px;
+
+  --line-body: 1.55;
+  --line-heading: 1.25;
+  --line-caption: 1.4;
+
+  --weight-regular: 400;
+  --weight-medium: 600;
+  --weight-bold: 700;
+
+  --page: #f6f7f9;
+  --surface: #ffffff;
+  --surface-sunken: #eef1f5;
+  --ink: #16202b;          /* 16.46:1 on surface */
+  --ink-muted: #55636f;    /* 6.18:1 on surface */
+  --ink-chip: #33404d;     /* 9.36:1 on sunken */
+  --accent: #1b4fd8;       /* white text on it: 6.65:1 */
+  --accent-dark: #163fab;
+  --accent-wash: #e8edfc;
+  --danger: #b3261e;       /* white text on it: 6.54:1 */
+  --danger-dark: #8f1e18;
+  --danger-wash: #fdeceb;
+  --success: #0f7b4a;      /* white text on it: 5.31:1 */
+  --success-wash: #e6f4ed;
+  --amber: #8a5300;        /* 6.33:1 on surface, used for text */
+  --star-filled: #c07800;  /* 3.54:1 on surface, a non-text graphic */
+  --star-empty: #8d95a0;   /* 3.03:1 on surface */
+  --border-control: #6b7480;   /* 4.74:1, used on every input and control edge */
+  --border-card: #c9d0d9;      /* decorative card edge only, never the sole cue for a control */
+  --track: #e6e9ee;
+  --focus-ring: #0b5cd8;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(22, 32, 43, 0.08), 0 4px 12px rgba(22, 32, 43, 0.06);
+
+  --transition: 180ms ease-out;
+
+  /* Every interactive element is at least this tall, which clears the 44px touch target figure. */
+  --control-height: 44px;
+  --content-width: 1120px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, "Noto Sans", Arial, sans-serif;
+  font-size: var(--text-body);
+  line-height: var(--line-body);
+}
+
+h1,
+h2,
+h3 {
+  line-height: var(--line-heading);
+  margin: 0 0 var(--space-3);
+  font-weight: var(--weight-bold);
+}
+
+h1 {
+  font-size: var(--text-h2);
+}
+
+h2 {
+  font-size: var(--text-h3);
+}
+
+h3 {
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+}
+
+p {
+  margin: 0 0 var(--space-3);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
+/* Focus is a visible ring rather than a colour swap, so a keyboard user can always see where they are. */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

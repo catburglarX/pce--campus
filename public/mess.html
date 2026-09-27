@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mess food · PCE Campus Voice</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div id="app-header"></div>
+
+    <main class="page" id="main">
+      <div class="page-head">
+        <h1>Mess food</h1>
+        <p>
+          Rate each meal on taste, hygiene and quantity. One rating per meal per day, and you can change
+          yours until the rating window closes.
+        </p>
+      </div>
+
+      <section class="card" aria-labelledby="day-heading">
+        <div class="card__head">
+          <h2 id="day-heading">Pick a day</h2>
+          <div class="btn-row">
+            <button class="btn btn--secondary btn--small" type="button" id="previous-day">
+              Previous day
+            </button>
+            <button class="btn btn--secondary btn--small" type="button" id="today-button">Today</button>
+            <button class="btn btn--secondary btn--small" type="button" id="next-day">Next day</button>
+          </div>
+        </div>
+        <div class="filters">
+          <div class="field">
+            <label class="field__label" for="date">Date served</label>
+            <input type="date" id="date" name="date" />
+            <span class="field__error" id="date-error" role="alert"></span>
+          </div>
+        </div>
+        <p class="caption muted" id="day-status" role="status"></p>
+      </section>
+
+      <section aria-labelledby="meals-heading">
+        <h2 id="meals-heading">Meals</h2>
+        <div id="meals">
+          <p class="loading">Loading the day…</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="week-heading">
+        <div class="card__head">
+          <h2 id="week-heading">This week's menu</h2>
+          <p class="caption muted" id="week-note"></p>
+        </div>
+        <div class="table-wrap">
+          <table id="week">
+            <caption>The mess menu repeats weekly. A campus admin can edit any cell.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Breakfast</th>
+                <th scope="col">Lunch</th>
+                <th scope="col">Evening snacks</th>
+                <th scope="col">Dinner</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/mess.js"></script>
+  </body>
+</html>

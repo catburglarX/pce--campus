@@ -1,0 +1,86 @@
+name: Release
+
+# Continuous delivery: every push to main produces a verified, downloadable build artifact.
+# Pushing a tag such as v1.0.0 additionally publishes a GitHub Release with that bundle attached.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Verify and package
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      bundle: ${{ steps.pack.outputs.bundle }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Install dev dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Full check (types, tests, smoke)
+        run: bun run check
+
+      - name: Package
+        id: pack
+        run: |
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            version="$GITHUB_REF_NAME"
+          else
+            version="main-${GITHUB_SHA::7}"
+          fi
+          bundle="pce-campus-voice-${version}"
+          mkdir -p "dist/${bundle}"
+          cp -r src public docs package.json bun.lock tsconfig.json README.md "dist/${bundle}/"
+          tar -C dist -czf "dist/${bundle}.tar.gz" "${bundle}"
+          (cd dist && zip -qr "${bundle}.zip" "${bundle}")
+          (cd dist && sha256sum "${bundle}.tar.gz" "${bundle}.zip" > "${bundle}.sha256")
+          echo "bundle=${bundle}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.pack.outputs.bundle }}
+          path: |
+            dist/*.tar.gz
+            dist/*.zip
+            dist/*.sha256
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    name: Publish GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.bundle }}
+          path: dist
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
